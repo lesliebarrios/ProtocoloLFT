@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { auth } from '../firebase/firebase';
+//import { auth } from '../firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import WelcomeView from '../views/WelcomeView.vue';
 import LoginView from '../views/LoginView.vue';
@@ -7,12 +7,13 @@ import LoginView from '../views/LoginView.vue';
 
 const routes = [
   {
-    path: '/ProtocoloLFT/',
+    path: '/',
     name: 'welcome',
-    component: WelcomeView
+    component: WelcomeView,
+    //meta: { requiresAuth: true }
   },
   {
-    path: '/ProtocoloLFT/login',
+    path: '/login',
     name: 'login',
     component: LoginView
   },
@@ -24,22 +25,22 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory("/ProtocoloLFT/"),
   routes
 });
 
-router.beforeEach((to, from, next) => {
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+// router.beforeEach((to, from, next) => {
+//   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   
-  onAuthStateChanged(auth, (user) => {
-    if (requiresAuth && !user) {
-      next('/login');
-    } else if ((to.name === 'login' || to.name === 'register') && user) {
-      next('/dashboard');
-    } else {
-      next();
-    }
-  });
-});
+//   onAuthStateChanged(auth, (user) => {
+//     if (requiresAuth && !user) {
+//       next('/login');
+//     } else if ((to.name === 'login' || to.name === 'register') && user) {
+//       next('/welcome');
+//     } else {
+//       next();
+//     }
+//   });
+// });
 
 export default router;

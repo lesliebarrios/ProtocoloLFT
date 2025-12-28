@@ -1,9 +1,16 @@
 <template>
   <div class="login-view">
-    <h1>Iniciar Sesión</h1>
+    <h1>INICIAR SESIÓN</h1>
     <form @submit.prevent="handleLogin">
-      <input v-model="email" type="email" placeholder="Correo electrónico" required />
-      <input v-model="password" type="password" placeholder="Contraseña" required />
+      <div>
+        <!-- icono -->
+        <input v-model="email" type="email" placeholder="Correo o username" required />
+      </div>
+      <div>
+        <input v-model="password" type="password" placeholder="Contraseña" required />
+      </div>
+      
+      
       <button type="submit">Ingresar</button>
     </form>
     <p>
@@ -15,8 +22,10 @@
 
 <script>
 import { ref } from 'vue';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase/firebase';
+// LOGIN REAL (comentado por ahora)
+// import { signInWithEmailAndPassword } from 'firebase/auth';
+// import { auth } from '../firebase/firebase';
+
 import { useRouter } from 'vue-router';
 
 export default {
@@ -28,13 +37,30 @@ export default {
     const error = ref('');
 
     const handleLogin = async () => {
+      // ================================
+      // LOGIN TEMPORAL / MOCK
+      // ================================
+      if (email.value === 'admin' && password.value === 'Password123!') {
+        console.log('Login mock exitoso');
+        router.push('/welcome');
+        return;
+      }
+
+      // ================================
+      // LOGIN REAL CON FIREBASE (COMENTADO)
+      // ================================
+      /*
       try {
         await signInWithEmailAndPassword(auth, email.value, password.value);
-        router.push('/dashboard');
+        router.push('/welcome');
       } catch (err) {
         error.value = err.message;
         console.error('Error al iniciar sesión:', err);
       }
+      */
+
+      // Si no coincide con el mock
+      error.value = 'Credenciales inválidas';
     };
 
     return {
@@ -44,37 +70,17 @@ export default {
       handleLogin
     };
   }
-}
+};
 </script>
 
 <style scoped>
-.login-view {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-input {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+h1 {
+  color: var(--color-primario);
+  font-weight: 400;
 }
 
 button {
-  width: 100%;
-  padding: 10px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #2980b9;
+  background-color: var(--color-primario);
+  color: var()
 }
 </style>
