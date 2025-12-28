@@ -62,7 +62,7 @@ const handleLogin = async () => {
   // ================================
   // LOGIN TEMPORAL / MOCK
   // ================================
-  if (email.value === 'leselisabm@gmail.com' && password.value === 'Password123!') {
+  if (email.value === 'leslielisabm@gmail.com' && password.value === 'Password123!') {
     console.log('Login mock exitoso');
     router.push('/');
     return;
@@ -94,7 +94,7 @@ const togglePassword = () => {
 
 <style scoped>
 h1 {
-  color: var(--color-secundario);
+  color: var(--color-primario);
   font-weight: 350;
 }
 
