@@ -4,6 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import WelcomeView from '../views/WelcomeView.vue';
 import LoginView from '../views/LoginView.vue';
 // import RegisterView from '../views/RegisterView.vue';
+import EditarArchivoView from '../views/EditarArchivoView.vue';
 
 const routes = [
   {
@@ -22,6 +23,12 @@ const routes = [
 //     name: 'register',
 //     component: RegisterView
 //   },
+
+  {
+    path: '/editar-archivo',
+    name: 'editar-archivo',
+    component: EditarArchivoView,
+  },
 ];
 
 const router = createRouter({
