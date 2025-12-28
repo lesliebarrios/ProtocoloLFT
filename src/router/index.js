@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 //import { auth } from '../firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import WelcomeView from '../views/WelcomeView.vue';
@@ -25,7 +25,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory("/ProtocoloLFT/"),
+  history: createWebHashHistory("/ProtocoloLFT/"),
   routes
 });
 
